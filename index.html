@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fiôra — Estamparia & Personalizados</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--fl:#1E3F35;--tc:#D96B43;--sa:#A3B8AE;--ar:#F5F2EB;--bg:#F5F2EB;--tx:#1E3F35;--card:#fff;--line:#c9d6cf;--hd:#1E3F35;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#13251d;--tx:#F5F2EB;--card:#1E3F35;--line:#35574a;--hd:#0e1c16;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#13251d;--tx:#F5F2EB;--card:#1E3F35;--line:#35574a;--hd:#0e1c16;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.6 Montserrat,system-ui,sans-serif}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--tc);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hd);color:var(--ar);display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;letter-spacing:.08em;text-decoration:none;color:inherit}
+.logo svg{width:30px;height:30px;color:var(--tc)}
+.cartbtn{background:none;border:2px solid var(--sa);border-radius:999px;padding:6px 16px;color:var(--ar);cursor:pointer;font-weight:600}
+.cartbtn b{background:var(--tc);color:#fff;border-radius:999px;padding:1px 8px;margin-left:6px;font-size:13px}
+.hero{background:var(--fl);color:var(--ar);padding:48px 22px 56px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2rem,8vw,4rem);line-height:1.08;font-weight:800;margin:0 0 16px;max-width:15ch;position:relative}
+.hero p{font-weight:300;font-size:1.05rem;max-width:44ch;margin:0 0 26px;position:relative}
+.hero .big{position:absolute;right:-60px;bottom:-70px;width:min(420px,90vw);color:var(--tc);opacity:.9}
+.btn{display:inline-block;background:var(--tc);color:#fff;border:0;border-radius:6px;padding:13px 24px;font-weight:700;text-decoration:none;cursor:pointer}
+.btn.alt{background:transparent;border:2px solid var(--fl);color:var(--tx)}
+.safra{background:var(--tc);color:#fff;padding:18px 22px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between}
+.safra strong{font-size:1.15rem;font-weight:700}
+.safra button{background:#fff;color:var(--fl);border:0;border-radius:6px;padding:8px 16px;font-weight:700;cursor:pointer}
+main{padding:36px 18px;max-width:1160px;margin:0 auto}
+h2{font-size:1.6rem;font-weight:700;margin:0 0 6px}
+.sub{font-weight:300;margin:0 0 20px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:18px}
+.filters button{white-space:nowrap;background:transparent;border:2px solid var(--sa);border-radius:999px;padding:6px 16px;cursor:pointer;font-weight:600}
+.filters button[aria-pressed=true]{background:var(--fl);border-color:var(--fl);color:var(--ar)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:22px}}
+@media(min-width:1040px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.card .img{aspect-ratio:1;background:#E4ECE7}
+.card .img svg,.card .img img{width:100%;height:100%;display:block;object-fit:cover}
+.card .in{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:.95rem;font-weight:600;margin:0;line-height:1.3}
+.card .d{font-size:.8rem;font-weight:300;margin:0}
+.price{font-weight:700;color:var(--tc);font-size:1.05rem}
+.card select{border:1px solid var(--sa);background:var(--bg);border-radius:6px;padding:6px}
+.card .btn{margin-top:auto;padding:10px;text-align:center;font-size:.9rem}
+.about{background:var(--card);border-top:1px solid var(--line);padding:40px 22px}
+.about div{max-width:760px;margin:0 auto}
+.about p{font-weight:300}
+footer{background:var(--hd);color:var(--ar);padding:30px 22px;font-weight:300;font-size:.9rem;text-align:center}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:30}
+.shade.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--bg);z-index:40;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+aside.on{transform:none}
+aside .top{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+aside .top button{background:none;border:0;font-size:28px;cursor:pointer;line-height:1}
+#items{flex:1;overflow:auto;padding:10px 18px}
+.it{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.it .th{width:60px;height:60px;border-radius:8px;overflow:hidden;flex:none}
+.it .th svg,.it .th img{width:100%;height:100%;object-fit:cover}
+.it .t{flex:1;font-size:.88rem;font-weight:600;line-height:1.3}
+.it .t small{display:block;font-weight:300}
+.q{display:flex;align-items:center;gap:8px}
+.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--sa);background:var(--card);cursor:pointer}
+.empty{text-align:center;padding:40px 10px;font-weight:300}
+aside .foot{padding:16px 18px;border-top:1px solid var(--line);display:grid;gap:10px}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem}
+.foot .btn{text-align:center}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="lot" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 16C40 32 40 54 50 72C60 54 60 32 50 16Z"/><path d="M50 72C34 68 22 54 20 38C34 40 46 52 50 72Z"/><path d="M50 72C66 68 78 54 80 38C66 40 54 52 50 72Z"/><path d="M50 74C28 76 12 64 8 48C24 48 40 58 50 74Z"/><path d="M50 74C72 76 88 64 92 48C76 48 60 58 50 74Z"/><path d="M42 12L50 3L58 12"/></g></symbol></defs></svg>
+
+<header>
+  <a class="logo" href="#topo"><svg><use href="#lot"/></svg>FIÔRA</a>
+  <button class="cartbtn" id="open" aria-label="Abrir carrinho">Carrinho<b id="count">0</b></button>
+</header>
+
+<section class="hero" id="topo">
+  <svg class="big" viewBox="0 0 100 100" aria-hidden="true"><use href="#lot"/></svg>
+  <h1>Ideias que florescem em estampas.</h1>
+  <p>Camisetas, canecas e bottons personalizados, feitos com precisão técnica e acabamento artesanal.</p>
+  <a class="btn" href="#loja">Ver produtos</a>
+</section>
+
+<div class="safra">
+  <strong>As melhores safras são de 1966.</strong>
+  <button data-f="Safra 1966">Ver coleção Safra 1966</button>
+</div>
+
+<main id="loja">
+  <h2>Nossa loja</h2>
+  <p class="sub">Escolha o produto, o tamanho e finalize o pedido.</p>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="about"><div>
+  <h2>Sua arte, do nosso jeito</h2>
+  <p>Trabalhamos com sublimação, DTF e acabamentos especiais. Você envia a arte, a gente ajuda a ajustar o arquivo, escolher o material e alinhar o prazo em cada etapa.</p>
+  <a class="btn alt" href="#" id="wpp2">Falar no WhatsApp</a>
+</div></section>
+
+<footer>FIÔRA — Estamparia & Personalizados<br>Atendimento por WhatsApp e Direct</footer>
+
+<div class="shade" id="shade"></div>
+<aside id="drawer" aria-label="Carrinho" aria-hidden="true">
+  <div class="top"><h2 style="margin:0;font-size:1.2rem">Seu carrinho</h2><button id="close" aria-label="Fechar carrinho">×</button></div>
+  <div id="items"></div>
+  <div class="foot">
+    <div class="tot"><span>Total</span><span id="total">R$ 0,00</span></div>
+    <a class="btn" id="wpp" href="#" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a>
+    <a class="btn alt" id="hot" href="#" target="_blank" rel="noopener">Pagar pela Hotmart</a>
+  </div>
+</aside>
+
+<script>
+// ===== CONFIGURAÇÕES (edite aqui) =====
+const WHATSAPP = "5532999999999";          // número com DDI + DDD
+const HOTMART = "https://pay.hotmart.com/SEU-LINK"; // link do produto na Hotmart
+const SIZES = ["P","M","G","GG"];
+// "img": coloque o endereço da foto real; se ficar vazio, usa a ilustração
+const PRODUCTS = [
+ {id:1,n:"Camiseta Safra 1966",c:"Camisetas",tag:"Safra 1966",p:79.9,d:"Algodão, estampa frontal.",k:"shirt",col:"#F5F2EB",pr:"txt",img:""},
+ {id:2,n:"Camiseta Florescer",c:"Camisetas",p:84.9,d:"Verde Floresta com ícone de lótus.",k:"shirt",col:"#1E3F35",pr:"lot",img:""},
+ {id:3,n:"Camiseta Lótus Terracota",c:"Camisetas",p:84.9,d:"Estampa em DTF, alta definição.",k:"shirt",col:"#D96B43",pr:"lotw",img:""},
+ {id:4,n:"Camiseta Sálvia",c:"Camisetas",p:79.9,d:"Tom suave, estampa minimalista.",k:"shirt",col:"#A3B8AE",pr:"lot",img:""},
+ {id:5,n:"Caneca Fiôra Areia",c:"Canecas",p:49.9,d:"Acabamento fosco, 325 ml.",k:"mug",col:"#F5F2EB",pr:"lot",img:""},
+ {id:6,n:"Caneca Safra 1966",c:"Canecas",tag:"Safra 1966",p:54.9,d:"Sublimação, não desbota.",k:"mug",col:"#1E3F35",pr:"txt",img:""},
+ {id:7,n:"Caneca Personalizada",c:"Canecas",p:59.9,d:"Envie sua arte ou foto.",k:"mug",col:"#FFFFFF",pr:"lot",img:""},
+ {id:8,n:"Botton Selo 38 mm",c:"Bottons",p:6.9,d:"Monograma circular da marca.",k:"btn",col:"#1E3F35",pr:"lot",img:""},
+ {id:9,n:"Botton Lótus 55 mm",c:"Bottons",p:9.9,d:"Ícone floral em Terracota.",k:"btn",col:"#D96B43",pr:"lotw",img:""},
+ {id:10,n:"Kit 5 Bottons",c:"Bottons",p:29.9,d:"Cores da paleta Fiôra.",k:"btn",col:"#F5F2EB",pr:"lot",img:""}
+];
+// ===== ILUSTRAÇÕES (troque por fotos reais quando tiver) =====
+const dark = c => ["#1E3F35","#D96B43"].includes(c);
+function art(p){
+  if(p.img) return `<img src="${p.img}" alt="${p.n}" loading="lazy">`;
+  const pc = p.pr==="lotw"||dark(p.col)&&p.pr!=="lot" ? "#F5F2EB" : p.col==="#1E3F35"?"#D96B43":"#1E3F35";
+  const lot = (x,y,s)=>`<svg x="${x}" y="${y}" width="${s}" height="${s}" style="color:${p.pr==="lot"&&!dark(p.col)?"#D96B43":pc}"><use href="#lot"/></svg>`;
+  const txt = (x,y,fs)=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="${fs}" fill="${pc}">SAFRA</text><text x="${x}" y="${y+fs}" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="300" font-size="${fs*.8}" fill="${pc}">1966</text>`;
+  const mark = (x,y,s,f)=> p.pr==="txt" ? txt(x,y+s*.35,f) : lot(x-s/2,y,s);
+  let b="";
+  if(p.k==="shirt") b=`<path d="M62 28l-42 22 16 34 22-11v98h84V73l22 11 16-34-42-22c-6 12-20 18-38 18S68 40 62 28z" fill="${p.col}" stroke="#00000022"/><path d="M80 30c6 10 38 10 40 0" fill="none" stroke="#00000030"/>${mark(100,86,56,20)}`;
+  if(p.k==="mug") b=`<ellipse cx="100" cy="172" rx="62" ry="8" fill="#0002"/><rect x="48" y="52" width="100" height="116" rx="8" fill="${p.col}" stroke="#00000022"/><path d="M148 76h14a20 20 0 010 50h-14" fill="none" stroke="${p.col}" stroke-width="12"/>${mark(98,86,56,20)}`;
+  if(p.k==="btn") b=`<circle cx="100" cy="104" r="68" fill="${p.col}" stroke="#00000022"/><circle cx="100" cy="104" r="58" fill="none" stroke="${pc}" stroke-opacity=".5"/>${p.pr==="txt"?txt(100,98,24):lot(66,66,68)}`;
+  return `<svg viewBox="0 0 200 200" role="img" aria-label="${p.n}"><rect width="200" height="200" fill="#E4ECE7"/>${b}</svg>`;
+}
+// ===== LÓJA =====
+const $ = s => document.querySelector(s);
+const fmt = n => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+let filter="Todos", cart=[];
+try{cart=JSON.parse(localStorage.getItem("fiora-cart")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("fiora-cart",JSON.stringify(cart))}catch(e){}};
+const cats=["Todos","Camisetas","Canecas","Bottons","Safra 1966"];
+
+function renderFilters(){
+  $("#filters").innerHTML=cats.map(c=>`<button data-f="${c}" aria-pressed="${c===filter}">${c}</button>`).join("");
+}
+function renderGrid(){
+  const list=PRODUCTS.filter(p=>filter==="Todos"||p.c===filter||p.tag===filter);
+  $("#grid").innerHTML=list.map(p=>`<article class="card">
+    <div class="img">${art(p)}</div>
+    <div class="in"><h3>${p.n}</h3><p class="d">${p.d}</p><span class="price">${fmt(p.p)}</span>
+    ${p.k==="shirt"?`<select id="s${p.id}" aria-label="Tamanho">${SIZES.map(s=>`<option>${s}</option>`).join("")}</select>`:""}
+    <button class="btn" data-add="${p.id}">Adicionar</button></div></article>`).join("");
+}
+function renderCart(){
+  const rows=cart.map((l,i)=>{const p=PRODUCTS.find(x=>x.id===l.id);return `<div class="it"><div class="th">${art(p)}</div>
+    <div class="t">${p.n}<small>${l.size?"Tamanho "+l.size+" · ":""}${fmt(p.p)}</small></div>
+    <div class="q"><button data-m="${i}" aria-label="Diminuir">−</button>${l.q}<button data-pl="${i}" aria-label="Aumentar">+</button></div></div>`}).join("");
+  $("#items").innerHTML=rows||`<p class="empty">Seu carrinho está vazio. Escolha um produto para começar.</p>`;
+  const total=cart.reduce((s,l)=>s+PRODUCTS.find(x=>x.id===l.id).p*l.q,0);
+  const qty=cart.reduce((s,l)=>s+l.q,0);
+  $("#count").textContent=qty; $("#total").textContent=fmt(total);
+  const lines=cart.map(l=>{const p=PRODUCTS.find(x=>x.id===l.id);return `• ${l.q}x ${p.n}${l.size?" ("+l.size+")":""} — ${fmt(p.p*l.q)}`});
+  const msg="Olá, Fiôra! Quero fazer este pedido:\n"+lines.join("\n")+"\nTotal: "+fmt(total);
+  $("#wpp").href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(qty?msg:"Olá, Fiôra! Quero fazer um pedido.")}`;
+  $("#wpp2").href=`https://wa.me/${WHATSAPP}`;
+  $("#hot").href=HOTMART;
+  save();
+}
+function toggle(on){$("#drawer").classList.toggle("on",on);$("#shade").classList.toggle("on",on);$("#drawer").setAttribute("aria-hidden",!on)}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,a"); if(!t) return;
+  if(t.dataset.f){filter=t.dataset.f;renderFilters();renderGrid();if(t.closest(".safra"))$("#loja").scrollIntoView()}
+  if(t.dataset.add){const id=+t.dataset.add,p=PRODUCTS.find(x=>x.id===id),sel=$("#s"+id),size=sel?sel.value:"";
+    const ex=cart.find(l=>l.id===id&&l.size===size); ex?ex.q++:cart.push({id,size,q:1}); renderCart(); toggle(true)}
+  if(t.dataset.pl){cart[+t.dataset.pl].q++;renderCart()}
+  if(t.dataset.m){const l=cart[+t.dataset.m];l.q--;if(l.q<1)cart.splice(+t.dataset.m,1);renderCart()}
+  if(t.id==="open")toggle(true);
+  if(t.id==="close")toggle(false);
+});
+$("#shade").onclick=()=>toggle(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")toggle(false)});
+renderFilters();renderGrid();renderCart();
+</script>
+</body>
+</html>
